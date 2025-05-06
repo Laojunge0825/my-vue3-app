@@ -31,6 +31,10 @@
             <template #icon><branches-outlined /></template>
             Vue3 Tree 页面
           </a-menu-item>
+          <a-menu-item key="vue3-tree-lazy" @click="navigateTo('/tree-lazy')">
+            <template #icon><branches-outlined /></template>
+            Tree Lazy 页面
+          </a-menu-item>
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>

@@ -27,6 +27,15 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: false,
         },
       },
+      {
+        path: 'tree-lazy',
+        name: 'TreeLazy',
+        component: () => import('../views/TreeLazy.vue'),
+        meta: {
+          title: 'TreeLazy组件',
+          keepAlive: false,
+        },
+      },
     ],
   },
   {
