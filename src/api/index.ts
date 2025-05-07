@@ -5,12 +5,14 @@
 import { OrgTreeApi } from './orgTree';
 import { UserApi } from './user';
 import { ProductApi } from './product';
+import { TreeApi } from './tree';
 
 // 导出API类
 export { 
   OrgTreeApi,
   UserApi,
-  ProductApi
+  ProductApi,
+  TreeApi
 };
 
 /**
