@@ -36,6 +36,14 @@
             Tree Lazy 页面
           </a-menu-item>
         </a-sub-menu>
+        <a-sub-menu key="3d-tree-menu">
+          <template #icon><apartment-outlined /></template>
+          <template #title>3D web 页</template>
+          <a-menu-item key="3d-tree" @click="navigateTo('/3d-tree')">
+            <template #icon><branches-outlined /></template>
+            3D Tree 页面
+          </a-menu-item>
+        </a-sub-menu>
       </a-menu>
     </a-layout-sider>
     

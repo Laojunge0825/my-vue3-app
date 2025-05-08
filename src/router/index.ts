@@ -36,6 +36,15 @@ const routes: Array<RouteRecordRaw> = [
           keepAlive: false,
         },
       },
+      {
+        path: '3d-tree',
+        name: '3DTree',
+        component: () => import('../views/3Dweb/3DTree/3DTree.vue'),
+        meta: {
+          title: '3DTree组件',
+          keepAlive: false,
+        },
+      },  
     ],
   },
   {

@@ -42,7 +42,18 @@ const features = [
     path: '/tree',
     icon: BranchesOutlined
   },
-  // 可以添加更多功能模块
+  {
+    title: 'Tree Lazy组件',
+    description: '懒加载树形结构数据，支持添加、编辑和删除节点等操作。',
+    path: '/tree-lazy',
+    icon: BranchesOutlined
+  },
+  {
+    title: '3D Tree组件',
+    description: '展示3D树形结构数据，支持添加、编辑和删除节点等操作。',
+    path: '/3d-tree',
+    icon: BranchesOutlined
+  }
 ];
 
 // 导航到指定路径
