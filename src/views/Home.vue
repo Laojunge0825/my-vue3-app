@@ -57,6 +57,12 @@
       description: '展示3D树形结构数据，支持添加、编辑和删除节点等操作。',
       path: '/3d-tree',
       icon: BranchesOutlined
+    },
+    {
+      title: '数据中心3D可视化',
+      description: '展示数据中心的舱体、箱子、堆和组的层级结构，支持鼠标悬停高亮和数据查看。',
+      path: '/3d-datacenter',
+      icon: BranchesOutlined
     }
   ]
 

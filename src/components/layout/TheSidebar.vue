@@ -46,7 +46,7 @@
         <a-menu-item key="tree">Tree组件</a-menu-item>
         <a-menu-item key="tree-lazy">懒加载树</a-menu-item>
         <a-menu-item key="3d-tree">3D树形图</a-menu-item>
-        <a-menu-item key="3d-data">3D数据</a-menu-item>
+        <a-menu-item key="3d-datacenter">数据中心3D可视化</a-menu-item>
       </a-sub-menu>
 
       <!-- 用户管理子菜单 -->
@@ -142,7 +142,7 @@
         '/tree': 'tree',
         '/tree-lazy': 'tree-lazy',
         '/3d-tree': '3d-tree',
-        '/3d-data': '3d-data'
+        '/3d-datacenter': '3d-datacenter'
       }
 
       /**
@@ -179,7 +179,7 @@
           case 'tree':
           case 'tree-lazy':
           case '3d-tree':
-          case '3d-data':
+          case '3d-datacenter':
             path = `/${key}`
             break
           default:

@@ -7,13 +7,22 @@ import type { RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue'),
+    name: 'Layout',
+    component: () => import('../layouts/BasicLayouts.vue'),
     meta: {
-      title: '工作台',
+      title: '主布局',
       keepAlive: false
     },
     children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('../views/Home.vue'),
+        meta: {
+          title: '工作台',
+          keepAlive: false
+        }
+      },
       {
         path: 'dashboard',
         name: 'Dashboard',
@@ -51,11 +60,11 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path: '3d-data',
+        path: '3d-datacenter',
         name: '3DData',
-        component: () => import('../views/3Dweb/3DTree/3DTree.vue'),
+        component: () => import('../views/3Dweb/DataCenterView.vue'),
         meta: {
-          title: '3D数据',
+          title: '数据中心3D可视化',
           keepAlive: false
         }
       }
