@@ -131,6 +131,7 @@
 
     let cabinXOffset = 0
     const baseYOffset = 25 // 添加基础Y轴偏移，使模型整体向上移动
+    const cabinSpacing = 60 // 舱体之间的固定最小间距
 
     // 遍历舱体
     hierarchy.forEach((cabinMap, cabinNo) => {
@@ -139,8 +140,11 @@
       cabinGroup.name = `cabin-${cabinNo}`
       cabinGroup.position.set(cabinXOffset, baseYOffset, 0) // 应用Y轴偏移
 
+      // 计算当前舱体的实际宽度
+      const cabinWidth = 50 * cabinMap.size + 5
+
       // 创建舱体外壳
-      const cabinOuterGeometry = new THREE.BoxGeometry(50 * cabinMap.size + 5, 55, 50)
+      const cabinOuterGeometry = new THREE.BoxGeometry(cabinWidth, 55, 50)
       const cabinOuterMaterial = new THREE.MeshPhongMaterial({
         color: 0xffffff, // 白色
         transparent: true,
@@ -148,10 +152,11 @@
         side: THREE.DoubleSide
       })
       const cabinOuter = new THREE.Mesh(cabinOuterGeometry, cabinOuterMaterial)
-      cabinOuter.position.set((50 * cabinMap.size) / 2 - 25, 0, 0) // 调整外壳位置使其包围所有箱子
+      cabinOuter.position.set(cabinWidth / 2 - 25, 0, 0) // 调整外壳位置使其包围所有箱子
       cabinGroup.add(cabinOuter)
 
       let boxXOffset = 0
+      const boxSpacing = 8 // 箱子之间的间距
 
       // 遍历箱子
       cabinMap.forEach((boxMap, boxNo) => {
@@ -160,10 +165,13 @@
         boxGroup.name = `box-${cabinNo}-${boxNo}`
         boxGroup.position.set(boxXOffset, 0, 0)
 
+        // 箱子尺寸
+        const boxWidth = 45
+
         // 创建箱子外壳
-        const boxOuterGeometry = new THREE.BoxGeometry(45, 50, 45) // 适当减小箱子尺寸
+        const boxOuterGeometry = new THREE.BoxGeometry(boxWidth, 50, 45) // 适当减小箱子尺寸
         const boxOuterMaterial = new THREE.MeshPhongMaterial({
-          color: 0x000000,
+          color: 0xff0000,
           transparent: true,
           opacity: 0.1,
           side: THREE.DoubleSide
@@ -174,6 +182,10 @@
         // 调整堆模型在箱子内的分布方式
         let rackXOffset = -14 // 减小X轴偏移
         let rackZOffset = -14 // 减小Z轴偏移
+        const rackWidthX = 16 // 堆的X轴宽度
+        const rackWidthZ = 14 // 堆的Z轴宽度
+        const rackSpacingX = 12 // 堆之间的X轴间距
+        const rackSpacingZ = 16 // 堆之间的Z轴间距
 
         // 遍历堆
         boxMap.forEach((rackMap, rackNo) => {
@@ -184,12 +196,12 @@
           // 计算堆的位置，确保正确排列
           const row = Math.floor((rackNo - 1) / 2)
           const col = (rackNo - 1) % 2
-          const xPos = rackXOffset + col * 28 // 减小横向间距
-          const zPos = rackZOffset + row * 30 // 减小纵向间距
+          const xPos = rackXOffset + col * (rackWidthX + rackSpacingX) // 根据堆宽度和间距计算
+          const zPos = rackZOffset + row * (rackWidthZ + rackSpacingZ) // 根据堆宽度和间距计算
           rackGroup.position.set(xPos, 0, zPos)
 
           // 创建堆外壳
-          const rackOuterGeometry = new THREE.BoxGeometry(16, 40, 14) // 进一步减小堆的尺寸
+          const rackOuterGeometry = new THREE.BoxGeometry(rackWidthX, 40, rackWidthZ) // 使用变量定义尺寸
           const rackOuterMaterial = new THREE.MeshPhongMaterial({
             color: 0x44ff44,
             transparent: true,
@@ -201,11 +213,15 @@
 
           // 调整堆内部组件的起始垂直位置，确保在堆内部完全可见
           let packYOffset = -14 // 修改了初始垂直位置
+          const packHeight = 3 // 组的高度
+          const packSpacing = 3 // 组之间的垂直间距
 
           // 遍历组
           rackMap.forEach((packData, packNo) => {
             // 创建组(服务器)
-            const packGeometry = new THREE.BoxGeometry(14, 3, 12) // 进一步减小组模型的尺寸
+            const packWidth = 14 // 组的宽度
+            const packDepth = 12 // 组的深度
+            const packGeometry = new THREE.BoxGeometry(packWidth, packHeight, packDepth) // 使用变量定义尺寸
             const packMaterial = new THREE.MeshStandardMaterial({
               color: getTempColor(packData.t),
               metalness: 0.6,
@@ -227,18 +243,21 @@
             packObjects.push(packMesh)
 
             rackGroup.add(packMesh)
-            packYOffset += 6 // 减小垂直间距
+            packYOffset += packHeight + packSpacing // 动态计算下一个组的位置
           })
 
           boxGroup.add(rackGroup)
         })
 
         cabinGroup.add(boxGroup)
-        boxXOffset += 53 // 增加箱子之间的间距
+        boxXOffset += boxWidth + boxSpacing // 根据箱子宽度和间距动态计算下一个箱子位置
       })
 
       scene.add(cabinGroup)
-      cabinXOffset += 120 // 显著增加舱体之间的间距
+
+      // 根据当前舱体的宽度计算下一个舱体的起始位置
+      // 当前舱体宽度 + 固定间距
+      cabinXOffset += cabinWidth + cabinSpacing
     })
   }
 

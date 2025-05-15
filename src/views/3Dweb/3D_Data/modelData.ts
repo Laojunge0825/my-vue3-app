@@ -85,6 +85,34 @@ export const dataCenterData: DataCenterItem[] = [
     t: 18.0
   },
   {
+    cabinNo: 1,
+    boxNo: 3,
+    rackNo: 1,
+    packNo: 1,
+    t: 28.0
+  },
+  {
+    cabinNo: 1,
+    boxNo: 3,
+    rackNo: 1,
+    packNo: 2,
+    t: 21.0
+  },
+  {
+    cabinNo: 1,
+    boxNo: 3,
+    rackNo: 2,
+    packNo: 1,
+    t: 20.0
+  },
+  {
+    cabinNo: 1,
+    boxNo: 3,
+    rackNo: 2,
+    packNo: 2,
+    t: 18.0
+  },
+  {
     cabinNo: 2,
     boxNo: 1,
     rackNo: 1,
